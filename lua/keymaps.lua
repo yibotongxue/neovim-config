@@ -18,7 +18,6 @@ vim.keymap.set('n', ';w', ':write<CR>', opts)
 
 -- 获取当前窗口的buffer数量
 local function get_current_window_buffers()
-  local bufnr = vim.api.nvim_win_get_buf(0) -- 获取当前窗口的buffer编号
   local buffers = {}
   for i = 1, vim.fn.bufnr('$') do
     if vim.fn.buflisted(i) == 1 then
@@ -28,14 +27,14 @@ local function get_current_window_buffers()
   return #buffers -- 返回buffer的数量
 end
 
-vim.keymap.set('n', ';q', function() 
+vim.keymap.set('n', ';q', function()
     local win_count = #vim.api.nvim_list_wins()
     local buf_count = get_current_window_buffers()
     if buf_count > 1 then
         vim.cmd('bdelete')
     elseif win_count > 1 then
         vim.cmd('close')
-    else 
+    else
         vim.cmd('quit')
     end
 end, opts)
@@ -56,9 +55,6 @@ vim.keymap.set('n', ';e', ':e<CR>', opts)
 
 -- 切回 shell
 vim.keymap.set('n', ';z', '<C-Z>', opts)
-
--- 在 Neovim 中打开终端，并使用 ;z 快捷键
--- vim.api.nvim_set_keymap('n', ';z', ':term<CR>', { noremap = true, silent = true })
 
 -- 水平分屏并打开文件目录
 vim.keymap.set('n', ';s', ':split<CR>:NERDTreeToggle<CR>', opts)

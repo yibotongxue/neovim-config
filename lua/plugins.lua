@@ -30,8 +30,8 @@ require("lazy").setup({
             require("bufferline").setup{
                 options = {
                     numbers = "none",  -- 不显示缓冲区编号
-                    show_buffer_close_icons = false,  -- 显示关闭图标
-                    show_buffer_icons = false,  -- 显示图标
+                    show_buffer_close_icons = false,  -- 不显示关闭图标
+                    show_buffer_icons = false,  -- 不显示图标
                     separator_style = "thin",  -- 分隔符样式
                     always_show_bufferline = true,  -- 总是显示缓冲区
                     offsets = {{
@@ -42,7 +42,6 @@ require("lazy").setup({
                     }}
                 }
             }
-            
             -- 键位绑定，快速切换缓冲区
             vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
             vim.keymap.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
@@ -55,6 +54,8 @@ require("lazy").setup({
     "tpope/vim-commentary",
     -- file tree
     "preservim/nerdtree",
+    -- function and variable tree
+    "simrat39/symbols-outline.nvim",
     -- LSP manager
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
