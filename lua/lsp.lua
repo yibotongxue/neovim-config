@@ -10,7 +10,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'lua_ls', 'bashls', 'clangd', 'jdtls' },
+    ensure_installed = { 'pylsp', 'lua_ls', 'bashls', 'clangd', 'jdtls', 'glslls' },
 })
 
 -- Set different settings for different languages' LSP.
@@ -126,3 +126,10 @@ lspconfig.jdtls.setup({
   cmd = { "jdtls" },  -- jdtls 命令，或者你可以指定路径
   filetypes = { "java" },  -- 只对 Java 文件生效
 })
+
+lspconfig.glslls.setup({
+    cmd = { "glslang-lsp" }, -- 确保 glslang-lsp 可执行
+    filetypes = { "glsl", "vert", "frag", "comp" }, -- 添加 GLSL 文件类型
+    on_attach = on_attach, -- 使用通用的 on_attach 函数
+})
+
