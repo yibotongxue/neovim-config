@@ -12,6 +12,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+      {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = { "glsl" }, -- 安装 GLSL 支持
+        highlight = {
+          enable = true,
+        },
+      }
+    end,
+  },
     'airblade/vim-gitgutter',
     {
         "windwp/nvim-autopairs",
