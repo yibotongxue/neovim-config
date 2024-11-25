@@ -1,3 +1,4 @@
+local util = require 'lspconfig.util'
 require('mason').setup({
     ui = {
         icons = {
@@ -10,7 +11,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'lua_ls', 'bashls', 'clangd', 'jdtls', 'glslls' },
+    ensure_installed = { 'pylsp', 'lua_ls', 'bashls', 'clangd', 'jdtls', 'glsl_analyzer' },
 })
 
 -- Set different settings for different languages' LSP.
@@ -127,9 +128,25 @@ lspconfig.jdtls.setup({
   filetypes = { "java" },  -- 只对 Java 文件生效
 })
 
-lspconfig.glslls.setup({
-    cmd = { "glslang-lsp" }, -- 确保 glslang-lsp 可执行
-    filetypes = { "glsl", "vert", "frag", "comp" }, -- 添加 GLSL 文件类型
-    on_attach = on_attach, -- 使用通用的 on_attach 函数
-})
+-- lspconfig.glslls.setup({
+--     cmd = { 'glslls', '--stdin' },
+--     filetypes = { 'glsl', 'vert', 'tesc', 'tese', 'frag', 'geom', 'comp' },
+--     root_dir = util.find_git_ancestor,
+--     single_file_support = true,
+--     capabilities = {
+--       textDocument = {
+--         completion = {
+--           editsNearCursor = true,
+--         },
+--       },
+--       offsetEncoding = { 'utf-8', 'utf-16' },
+--     },
+-- })
 
+lspconfig.glsl_analyzer.setup({
+    cmd = { 'glsl_analyzer' },
+    filetypes = { 'glsl', 'vert', 'tesc', 'tese', 'frag', 'geom', 'comp' },
+    root_dir = util.find_git_ancestor,
+    single_file_support = true,
+    capabilities = {},
+})

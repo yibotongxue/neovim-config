@@ -104,3 +104,30 @@ vim.api.nvim_create_autocmd("FileType", {
         { silent = true, noremap = true})
     end
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+    pattern = { "*.vert", "*.frag", "*.geom", "*.glsl" },
+    command = "set filetype=glsl",
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+    pattern = { "*.vert", "*.frag", "*.geom", "*.glsl" },
+    command = "set filetype=glsl",
+})
+
+-- 自动启动 glsl-analyzer LSP
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "glsl", "vert", "frag", "comp" },
+--   callback = function()
+--     require('lspconfig').glsl_analyzer.setup{}
+--   end,
+-- })
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+    callback = function()
+        local line = vim.fn.line("'\"")
+        if line > 1 and line <= vim.fn.line('$') then
+            vim.cmd('normal! g\'"')
+        end
+    end
+})
