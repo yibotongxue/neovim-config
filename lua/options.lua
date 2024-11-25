@@ -28,3 +28,7 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 vim.opt.swapfile = false
 
 vim.opt.termguicolors = true
+
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true

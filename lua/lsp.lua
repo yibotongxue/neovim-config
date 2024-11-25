@@ -1,4 +1,3 @@
-local util = require 'lspconfig.util'
 require('mason').setup({
     ui = {
         icons = {
@@ -128,25 +127,7 @@ lspconfig.jdtls.setup({
   filetypes = { "java" },  -- 只对 Java 文件生效
 })
 
--- lspconfig.glslls.setup({
---     cmd = { 'glslls', '--stdin' },
---     filetypes = { 'glsl', 'vert', 'tesc', 'tese', 'frag', 'geom', 'comp' },
---     root_dir = util.find_git_ancestor,
---     single_file_support = true,
---     capabilities = {
---       textDocument = {
---         completion = {
---           editsNearCursor = true,
---         },
---       },
---       offsetEncoding = { 'utf-8', 'utf-16' },
---     },
--- })
-
-lspconfig.glsl_analyzer.setup({
-    cmd = { 'glsl_analyzer' },
-    filetypes = { 'glsl', 'vert', 'tesc', 'tese', 'frag', 'geom', 'comp' },
-    root_dir = util.find_git_ancestor,
-    single_file_support = true,
-    capabilities = {},
-})
+-- glsl
+require'lspconfig'.glsl_analyzer.setup{
+    on_attach = on_attach
+}

@@ -97,5 +97,6 @@ require("lazy").setup({
 		version = "v2.*",
 	},
     "tanvirtin/monokai.nvim",
+    "tikhomirov/vim-glsl",
     -- "folke/tokyonight.nvim",
 })
