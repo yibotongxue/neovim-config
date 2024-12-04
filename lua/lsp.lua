@@ -67,6 +67,8 @@ local on_attach = function(client, bufnr)
 			end,
 		})
 	end, bufopts)
+    -- 配置快捷键回到之前的位置
+    vim.keymap.set("n", "gb", '<C-O>', bufopts)
 end
 
 -- How to add an LSP for a specific programming language?
