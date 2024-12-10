@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- 自动插入文件头
 vim.api.nvim_create_autocmd("BufNewFile", {
-  pattern = {"*.cpp", "*.cc", "*.h", "*.sh", "*.java", "*.go"},
+  pattern = {"*.cpp", "*.cc", "*.h", "*.c", "*.sh", "*.hpp", "*.java", "*.go"},
   callback = function()
     local filetype = vim.bo.filetype
     local filename = vim.fn.expand("%:t")
